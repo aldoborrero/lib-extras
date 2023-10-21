@@ -1,0 +1,15 @@
+# Created by https://www.toptal.com/developers/gitignore/api/direnv,nix
+# Edit at https://www.toptal.com/developers/gitignore?templates=direnv,nix
+
+# nix
+**/result*
+/repl-result-out
+
+# direnv
+**/.direnv
+/env
+.envrc.local
+
+#!! ERROR: nix is undefined. Use list command to see defined gitignore types !!#
+
+# End of https://www.toptal.com/developers/gitignore/api/direnv,nix
