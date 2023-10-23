@@ -1,31 +1,26 @@
 # lib-extras
 
-> A collection of extra functions to `nixpkgs.lib`!
+> A collection of extra (and maybe opinioated) functions to `nixpkgs.lib`!
 
-This project aims to enhance the default `nixpkgs.lib` with additional (and maybe opinioated) functions.
+This project aims to enhance the default `nixpkgs.lib` with additional extra functions.
 
 ## Functions
 
 Below you can find the supported list of extra functions categorized by utility. The list for now is very small,
 but more functions will be created for sure:
 
-### Filesystem Functions:
+### Filesystem:
 
 - **collectNixFiles**: Collects `.nix` files recursively from a directory and returns them as an attribute set.
 
-### Flake Functions:
+### Flake:
 
 - **mkApp**: Produces an "app" type for Nix flakes given a derivation and optional parameters.
 - **filterPkgs**: Filters packages based on a specified attribute path and criteria.
 
-### Nix Functions:
+### Nix:
 
 - **mkNixpkgs**: Imports and configures a Nixpkgs environment with custom settings, overlays, and system type.
-
-## Requirements
-
-- Nix with flake support.
-- \[Optional\] `direnv` installed.
 
 ## Usage
 
@@ -45,13 +40,12 @@ To use `lib-extras` in your project:
 
 ## Development
 
-When you're developing or contributing to `lib-extras`, the integrated `deevshell` provides a useful command to format the source tree:
+To make the most of this repository, you should have the following installed:
 
-```console
-$ fmt
-```
+- [Nix](https://nixos.org/)
+- [Direnv](https://direnv.net/)
 
-This command ensurees that all Nix code adheres to a standard format.
+After cloning this repository and entering inside, run `direnv allow` when prompted, and you will be met with the menu prompt.
 
 ## Contributing
 
