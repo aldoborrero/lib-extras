@@ -1,5 +1,5 @@
 {
-  description = "A collection of extra (maybe opinioated) functions to nixpkgs.lib!";
+  description = "A collection of extra (maybe opinionated) functions to nixpkgs.lib!";
 
   inputs = {
     # pkgs
@@ -47,6 +47,12 @@
           name = "lib-extras";
           commands = [
             {
+              name = "check";
+              category = "Checks";
+              help = "Checks the source code";
+              command = "nix flake check";
+            }
+            {
               name = "fmt";
               category = "Formatters";
               help = "Format the source tree";
@@ -73,6 +79,6 @@
       };
     }
     // {
-      lib = import ./lib.nix;
+      lib = import ./src/lib.nix;
     };
 }
