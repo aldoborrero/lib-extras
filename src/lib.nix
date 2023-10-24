@@ -1,4 +1,4 @@
-_: lib: let
+lib: let
   # Filesystem related functions
   fs = rec {
     /*
