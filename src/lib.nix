@@ -50,6 +50,19 @@ lib: let
       program = "${drv}${exePath}";
     };
 
+    /*
+    Function: mkTemplate
+    Synopsis: Creates a template with a given path and description.
+
+    Parameters:
+      - path (string): The path to the template.
+      - description (string, optional): Description of the template.
+
+    Returns:
+      - An attribute set with 'path' and 'description' keys.
+    */
+    mkTemplate = {path, description ? ""} : {inherit path description;};
+
     filterPkgs = path: by: let
       path' =
         if builtins.isList path
