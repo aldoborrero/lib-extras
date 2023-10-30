@@ -63,6 +63,17 @@ lib: let
     */
     mkTemplate = {path, description ? ""} : {inherit path description;};
 
+    /*
+    Function: filterPkgs
+    Synopsis: Filters packages based on a specified attribute path and value.
+
+    Parameters:
+      - path (string | list): The attribute path to inspect within the package.
+      - by (any): The value to match against the attribute located by the path.
+
+    Returns:
+      - A set of packages that match the specified value at the given attribute path.
+    */
     filterPkgs = path: by: let
       path' =
         if builtins.isList path
