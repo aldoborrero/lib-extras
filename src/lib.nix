@@ -1,4 +1,28 @@
 lib: let
+  # Attribute sets functions
+  attrs = {
+    /*
+    Function: mergeAny
+    Synopsis: Merges two attribute sets, handling nested structures.
+
+    Parameters:
+      - lhs (attrset): Left-hand side attribute set.
+      - rhs (attrset): Right-hand side attribute set.
+
+    Returns:
+      - Merged attribute set.
+    */
+    mergeAny = lhs: rhs:
+      lhs
+      // lib.mapAttrs (name: value:
+        if lib.isAttrs value
+        then lhs.${name} or {} // value
+        else if lib.isList value
+        then lhs.${name} or [] ++ value
+        else value)
+      rhs;
+  };
+
   # Filesystem related functions
   fs = rec {
     /*
@@ -118,5 +142,10 @@ lib: let
       import nixpkgs {inherit system config overlays;};
   };
 in {
-  inherit fs flakes nix;
+  inherit
+    attrs
+    fs
+    flakes
+    nix
+    ;
 }
