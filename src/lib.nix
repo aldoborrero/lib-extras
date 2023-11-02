@@ -105,6 +105,30 @@ lib: let
         else (lib.splitString "." path);
     in
       lib.filterAttrs (_: pkg: by == (lib.attrByPath path' "" pkg));
+
+    /*
+    Function: buildApps
+    Synopsis: Constructs attribute set of applications from Nix packages and custom apps specification.
+
+    Parameters:
+      - packages (attrset): An attribute set of Nix packages.
+      - apps (attrset): Custom apps specification.
+
+    Returns:
+      - An attribute set representing built applications.
+    */
+    buildApps = packages: apps:
+      lib.listToAttrs
+      (lib.collect (attrs: lib.attrNames attrs == ["name" "value"])
+        (lib.mapAttrsRecursiveCond lib.isAttrs (path: v: let
+          drvName = lib.head path;
+          drv = packages.${drvName};
+          name = lib.last (lib.init path);
+          exePath = "/bin/${v}";
+        in
+          lib.nameValuePair name {inherit drv name exePath;})
+        apps));
+
   };
 
   # Nix related functions
