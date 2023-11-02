@@ -1,5 +1,5 @@
 {
-  description = "A collection of extra (maybe opinionated) functions to nixpkgs.lib!";
+  description = "lib-extras / A collection of extra (maybe opinionated) functions to nixpkgs.lib!";
 
   inputs = {
     # pkgs
@@ -25,7 +25,6 @@
 
   outputs = inputs @ {
     flake-parts,
-    nixpkgs,
     ...
   }:
     flake-parts.lib.mkFlake {inherit inputs;} {
