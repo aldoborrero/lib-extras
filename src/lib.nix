@@ -146,6 +146,22 @@ lib: let
       in
         lib.elem system platforms);
 
+    /*
+    Function: platformApps
+    Synopsis: Filters and builds platform-specific applications.
+
+    Parameters:
+      - packages (attrset): An attribute set of Nix packages.
+      - apps (attrset): Custom apps specification.
+
+    Returns:
+      - An attribute set of platform-specific applications.
+    */
+    platformApps = packages: apps: let
+      apps' = lib.filterAttrs (name: _: lib.elem name (lib.attrNames packages)) apps;
+      bapps = lib.buildApps packages apps';
+    in
+      lib.mapAttrs (_: lib.mkApp) bapps;
   };
 
   # Nix related functions
