@@ -129,6 +129,23 @@ lib: let
           lib.nameValuePair name {inherit drv name exePath;})
         apps));
 
+    /*
+    Function: platformPkgs
+    Synopsis: Filters Nix packages based on the target system platform.
+
+    Parameters:
+      - system (string): Target system platform (e.g., "x86_64-linux").
+
+    Returns:
+      - A filtered attribute set of Nix packages compatible with the target system.
+    */
+    platformPkgs = system:
+      lib.filterAttrs
+      (_: value: let
+        platforms = lib.attrByPath ["meta" "platforms"] [] value;
+      in
+        lib.elem system platforms);
+
   };
 
   # Nix related functions
