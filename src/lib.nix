@@ -85,7 +85,10 @@ lib: let
     Returns:
       - An attribute set with 'path' and 'description' keys.
     */
-    mkTemplate = {path, description ? ""} : {inherit path description;};
+    mkTemplate = {
+      path,
+      description ? "",
+    }: {inherit path description;};
 
     /*
     Function: filterPkgs
