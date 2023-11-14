@@ -52,7 +52,7 @@ lib: let
   };
 
   # Flake related functions
-  flakes = {
+  flakes = rec {
     /*
     Function: mkApp
     Synopsis: Creates an "app" type for Nix flakes.
@@ -162,7 +162,7 @@ lib: let
     */
     platformApps = packages: apps: let
       apps' = lib.filterAttrs (name: _: lib.elem name (lib.attrNames packages)) apps;
-      bapps = lib.buildApps packages apps';
+      bapps = buildApps packages apps';
     in
       lib.mapAttrs (_: lib.mkApp) bapps;
   };
