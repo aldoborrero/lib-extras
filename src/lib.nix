@@ -164,7 +164,7 @@ lib: let
       apps' = lib.filterAttrs (name: _: lib.elem name (lib.attrNames packages)) apps;
       bapps = buildApps packages apps';
     in
-      lib.mapAttrs (_: lib.mkApp) bapps;
+      lib.mapAttrs (_: mkApp) bapps;
   };
 
   # Nix related functions
